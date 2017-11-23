@@ -27,3 +27,15 @@ describe('reducer', () => {
     });
   });
 });
+
+//fill in the basic componant functinality
+//write the action tests
+//write the reducer tests
+//write the react enzyme tests
+//do the css
+//add in the custom backend
+//check over custom back end
+//write readme and host custom back end
+// check frontend
+// write readme for front end
+//fin
