@@ -1,11 +1,12 @@
 import * as types from './types';
+import axios from 'axios';
+
 
 export const toggleTest = () => ({
   type: types.TOGGLE_TEST
 });
 
 
-import axios from 'axios';
 
 const API_URL = 'https://northcoders-news-api.herokuapp.com/api';
 

@@ -6,7 +6,7 @@ import {
     Link
   } from 'react-router-dom';
 import MostPop from './MostPop'
-import TopicPage from './TopicPage'
+import TopicPage from './TopicsPage'
 import Article from './Article'
 import Topics from './Topics'
 
