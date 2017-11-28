@@ -28,7 +28,7 @@ describe('reducer', () => {
   });
 });
 
-//fill in the basic componant functinality
+//clean up article and remove the console.logs
 //write the action tests
 //write the reducer tests
 //write the react enzyme tests
