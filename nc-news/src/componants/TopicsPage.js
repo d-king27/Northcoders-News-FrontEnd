@@ -16,6 +16,11 @@ componentDidMount(){
      this.props.fetchArticles('topics',p2,'articles')
         
     }
+  componentWillReceiveProps(Props){
+    var p2 = this.props.match.params.id
+    if(Props.location.pathname !== this.props.location.pathname)
+      {this.props.fetchArticles('topics',p2,'articles')}
+  }   
 
     renderArticles(arr){
 return arr.map(function(item){
@@ -29,7 +34,6 @@ return arr.map(function(item){
       return (
         <div className =''>
         <h1 className = 'title'>{this.props.match.params.id}</h1>
-       <p>*****</p>
        {this.renderArticles(this.props.articles)}
       </div>
       );

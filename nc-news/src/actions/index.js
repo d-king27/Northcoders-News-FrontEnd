@@ -2,6 +2,12 @@ import * as types from './types';
 import axios from 'axios';
 
 
+export const toggleTest = () => ({
+  type: types.TOGGLE_TEST
+});
+
+
+
 const API_URL = 'https://northcoders-news-api.herokuapp.com/api';
 
 export const fetchArticlesRequest = () => ({
@@ -42,3 +48,7 @@ export default (p1,p2,p3) => {
       });
   };
 };
+
+
+
+

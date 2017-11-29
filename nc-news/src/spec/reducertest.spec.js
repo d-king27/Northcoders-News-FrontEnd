@@ -2,7 +2,8 @@ import {expect} from 'chai';
 import testReducer from '../reducers/test';
 import * as actionCreators from '../actions';
 
-describe('reducer', () => {
+
+describe('TEST reducer', () => {
   describe('default behaviour', () => {
     it('returns the passed previous state if an unrecognised action is passed', () => {
       const prevState = false;
@@ -28,7 +29,6 @@ describe('reducer', () => {
   });
 });
 
-//clean up article and remove the console.logs
 //write the action tests
 //write the reducer tests
 //write the react enzyme tests
