@@ -17,7 +17,10 @@ class MostPop extends React.Component {
 
   renderArticles(arr){
     return arr.map(function(item){
-      return <ArticleCard title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
+      return <div className='section'>
+      <ArticleCard title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
+      </div>
+
     })
 
 
@@ -25,8 +28,8 @@ class MostPop extends React.Component {
   }
   render () {
     return (
-      <div className =''>
-        <h1 className = 'title'>Most Popular</h1>
+      <div>
+        <h1 className = 'title left-align'>Most Popular</h1>
         {this.renderArticles(this.props.articles)}
       </div>
     );

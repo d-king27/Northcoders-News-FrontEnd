@@ -33,7 +33,7 @@ return arr.map(function(item){
     render () {
       return (
         <div className =''>
-        <h1 className = 'title'>{this.props.match.params.id}</h1>
+        <h1 className = 'title left-align'>{this.props.match.params.id[0].toUpperCase() + this.props.match.params.id.slice(1)}</h1>
        {this.renderArticles(this.props.articles)}
       </div>
       );

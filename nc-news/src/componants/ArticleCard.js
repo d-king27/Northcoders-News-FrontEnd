@@ -8,8 +8,7 @@ import {
 class ArticleCard extends React.Component {
     render () {
       return (
-        <div className='Nav'>
-         
+        <div className='left-align z-depth-2 '>
          <p>{this.props.title}</p>
          <p>{this.props.articleVotes}</p>
          <p>{this.props.user}</p>
