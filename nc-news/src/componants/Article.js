@@ -14,8 +14,11 @@ class Article extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleDownClick = this.handleDownClick.bind(this);
     this.handlePostClick = this.handlePostClick.bind(this)
+    this.handleUpClickArticle = this.handleUpClickArticle.bind(this);
+    this.handleDownClickArticle = this.handleDownClickArticle.bind(this);
     this.state = {
-      comment:''
+      comment:'',
+      votes: this.getArticle(this.props.articles, this.props.match.params.id).votes
     }
 
   } 
@@ -33,6 +36,37 @@ class Article extends React.Component {
   
   }
 
+  handleUpClickArticle(event) {
+    let that = this
+    const value = this.state.votes;
+    axios.put(`http://northcoders-news-api.herokuapp.com/api/articles/${this.props.match.params.id}?vote=up`)
+    .then((res)=>{
+      that.setState({
+        votes:value+1
+      })
+
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
+  handleDownClickArticle(event) {
+    let that = this
+    const value = this.state.votes;
+    axios.put(`http://northcoders-news-api.herokuapp.com/api/articles/${this.props.match.params.id}?vote=down`)
+    .then((res)=>{
+      that.setState({
+        votes:value-1
+      })
+
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
+
   handleChange(event){
     const value = event.target.value
     this.setState({
@@ -41,18 +75,18 @@ class Article extends React.Component {
   }
 
   handlePostClick(event){
-    // let that = this
-    // event.preventDefault()
-    // axios.post('****PLACEHOLDER*****', {
-    //  stuff:'stuff'
-    // })
-    // .then(function (response) {
-    //   that.props.fetchComments(this.props.match.params.id);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-    console.log('called')
+    if(this.state.comment.length === 0){return}
+    let that = this
+    event.preventDefault()
+    axios.get(`http://northcoders-news-api.herokuapp.com/api/articles/${this.props.match.params.id}/comments`, {
+      "comment": that.state.comment
+    })
+    .then(function (response) {
+      that.props.fetchComments(that.props.match.params.id);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
   }
 
@@ -93,13 +127,16 @@ class Article extends React.Component {
       <div className='Nav'>
         <p>{this.getArticle(this.props.articles, this.props.match.params.id).title}</p>
         <p>{this.getArticle(this.props.articles, this.props.match.params.id).body}</p>
-        <textarea rows="4" cols="50" onChange={this.handleChange}></textarea> <button onClick={this.handlePostClick}>click</button>
+        <p>{this.state.votes}</p> <button onClick={this.handleUpClickArticle}>rate up</button> <button onClick={this.handleDownClickArticle}>rate down</button>
+        <textarea rows="4" cols="50" onChange={this.handleChange}></textarea> <button onClick={this.handlePostClick}>post comment</button>
         <p>{this.renderComments(this.props.comments)}</p>
         <p> *** </p>
       </div>
     );
   }
 }
+
+
 
 const mapStateToProps = (state) => {
   return {

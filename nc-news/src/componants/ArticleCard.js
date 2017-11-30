@@ -11,6 +11,8 @@ class ArticleCard extends React.Component {
         <div className='Nav'>
          
          <p>{this.props.title}</p>
+         <p>{this.props.articleVotes}</p>
+         <p>{this.props.user}</p>
          <Link to={`/articles/${this.props.articleId}`}>link to {this.props.title}</Link>
         </div>
       );

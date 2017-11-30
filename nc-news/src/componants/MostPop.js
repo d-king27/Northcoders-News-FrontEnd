@@ -17,7 +17,7 @@ class MostPop extends React.Component {
 
   renderArticles(arr){
     return arr.map(function(item){
-      return <ArticleCard title ={item.title} body ={item.body} articleId = {item._id}/>
+      return <ArticleCard title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
     })
 
 

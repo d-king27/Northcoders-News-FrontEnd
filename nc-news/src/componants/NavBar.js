@@ -28,21 +28,20 @@ class NavBar extends React.Component {
 
 renderTopics(topics){
   return topics.map(function(item){
-      return <span> ***** <Link to={`/${item.slug}`} replace>{item.slug}</Link> </span>
+      return <Link className='col s3 flow-text black' to={`/topics/${item.slug}`} replace>{item.title}</Link>
   }) 
 
 }
     render () {
       return (
         <Router>
-<div>
-        <nav className="navbar navbar-dark bg-dark">
-        <Link className="title" to="/" replace>Home</Link>{this.renderTopics(this.props.topics)}
+<div className='row'>
+        <nav className="center-align navbar red lighten-2">
+        <Link className="col s3 flow-text black" to="/" replace>Home</Link>{this.renderTopics(this.props.topics)}
       </nav>
       <Route exact path="/" component={MostPop} />
       <Route path="/articles/:id" component={Article} />
-      <Route exact path="/topics" component={Topics} />
-      <Route path="/:id" component={TopicPage} />
+      <Route path="/topics/:id" component={TopicPage} />
       </div>
       </Router>
       );

@@ -12,12 +12,9 @@ import {
 class App extends React.Component {
   render () {
     return (
-      <section className='section'>
-        <div id='App' className='container'>
-          <NavBar/>
-      
-         
-
+      <section className='card-panel  grey lighten-4'>
+        <div id='App' className='card-panel'>
+          <NavBar/>     
         </div>
       </section>
     );
