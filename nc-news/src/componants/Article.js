@@ -3,6 +3,9 @@ import axios from 'axios'
 import {connect} from 'react-redux';
 import fetchComments from '../actions/comments';
 import voteComments from '../actions/voteComments';
+import {
+  Link
+} from 'react-router-dom';
 
 class Article extends React.Component {
   constructor(props) {
@@ -165,7 +168,7 @@ class Article extends React.Component {
     return (
       <div className='Nav'>
         <p style={styleTitle}>{this.getArticle(this.props.articles, this.props.match.params.id).title}</p>
-        <p className='flow-text' style={styleText}>Written By : {this.getArticle(this.props.articles, this.props.match.params.id).created_by}</p>
+        <Link style={styleText} className='flow-text'to={`/user/${this.getArticle(this.props.articles, this.props.match.params.id).created_by}`}>Author: {this.getArticle(this.props.articles, this.props.match.params.id).created_by}</Link>
         <div className='left-align z-depth-2 '>
         <p className='flow-text' style={styleText}>{this.getArticle(this.props.articles, this.props.match.params.id).body}</p>
         </div>

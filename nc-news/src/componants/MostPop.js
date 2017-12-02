@@ -37,9 +37,17 @@ class MostPop extends React.Component {
       fontWeight: 'bold',
       fontFamily: "Courier"
     }
+    const imageStyleA ={
+      float: 'right',
+      width: '300px',
+      border: '3px solid',
+      padding: '10px',
+      backgroundColor: 'black'
+  }
     return (
       <div>
-        <h1 className = 'title left-align' style={style}>Most Popular</h1> 
+        <img className="responsive-img" style={imageStyleA} src="https://northcoders.com/images/logos/learn_to_code_manchester_rw_second.png" alt="Northcoders" align="right"/>
+        <h1 className = 'title left-align' style={style}> Most Popular</h1> 
         {this.renderArticles(this.props.articles)}
       </div>
     );

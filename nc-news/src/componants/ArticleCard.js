@@ -40,11 +40,13 @@ class ArticleCard extends React.Component {
         <div className='left-align z-depth-2 hoverable'>
          <Link style={styleL} className='flow-text'to={`/articles/${this.props.articleId}`}>{this.props.title}</Link>
          <p style={styleT} className='flow-text'>Votes: {this.props.articleVotes}</p>
-         <p style={styleU} className='flow-text'>Author: {this.props.user}</p>
+         <Link style={styleU} className='flow-text'to={`/user/${this.props.user}`}>Author: {this.props.user}</Link>
          
         </div>
       );
     }
   }
+
+  // <p style={styleU} className='flow-text'>Author: {this.props.user}</p>
 
   export default ArticleCard

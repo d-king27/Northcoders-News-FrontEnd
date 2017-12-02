@@ -9,6 +9,7 @@ import MostPop from './MostPop'
 import TopicPage from './TopicsPage'
 import Article from './Article'
 import fetchTopics from '../actions/topics'
+import UserPage from './UserPage'
 import {connect} from 'react-redux';
 
 class NavBar extends React.Component {
@@ -43,6 +44,7 @@ renderTopics(topics){
       <Route exact path="/" component={MostPop} />
       <Route path="/articles/:id" component={Article} />
       <Route path="/topics/:id" component={TopicPage} />
+      <Route path="/user/:username" component={UserPage} />
       </div>
       </Router>
       );
