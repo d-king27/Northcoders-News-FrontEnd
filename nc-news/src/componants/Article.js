@@ -10,12 +10,12 @@ class Article extends React.Component {
 
     this.getArticle = this.getArticle.bind(this);
     this.renderComments = this.renderComments.bind(this);
-    this.handleUpClick = this.handleUpClick.bind(this);
+    this.genHandleClick = this.genHandleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleDownClick = this.handleDownClick.bind(this);
     this.handlePostClick = this.handlePostClick.bind(this)
     this.handleUpClickArticle = this.handleUpClickArticle.bind(this);
     this.handleDownClickArticle = this.handleDownClickArticle.bind(this);
+    this.getBoolean = this.getBoolean.bind(this)
     this.state = {
       comment:'',
       votes: this.getArticle(this.props.articles, this.props.match.params.id).votes
@@ -26,15 +26,14 @@ class Article extends React.Component {
   componentDidMount() {
     this.props.fetchComments(this.props.match.params.id);
   }
-  handleUpClick(event) {
-    const value = event.target.dataset.value;
-    this.props.voteButton(value, true);
+
+  genHandleClick(id,bool){
+    return (event) => {
+    this.props.voteButton(id, bool);
+    }
   }
-  handleDownClick(event) {
-    const value = event.target.dataset.value;
-    this.props.voteButton(value, false);
-  
-  }
+
+
 
   handleUpClickArticle(event) {
     let that = this
@@ -92,21 +91,33 @@ class Article extends React.Component {
 
 
   renderComments(arr) {
+    const styleV = {
+      margin: '0.3em',
+      paddingLeft: 0,
+      listStyle: 'none',
+      color:'black',
+      fontWeight:'bold'
+    }
+    const styleC = {
+      margin: '0.3em',
+      paddingLeft: 0,
+      listStyle: 'none',
+      color:'black',
+      fontStyle: 'italic'
+    }
+    const styleB = {
+      margin: '0.3em',
+      paddingLeft: 0,
+      listStyle: 'none'
+    }
     return arr.map((item) => {
 
-      return <div>
-        <h4>{item.created_by}</h4>
-        <p>{item.body}</p>
-        <p>{item.votes} votes</p>
-        <button
-          data-value={item._id}
-          onClick={this.handleUpClick}
-        >up</button>
-        <button 
-        data-value={item._id}
-          onClick={this.handleDownClick}
-          >down </button>
-          *************
+      return <div className='left-align z-depth-2 hoverable'>
+        <p className='flow-text'style={styleC}>{item.body}</p>
+        <p className='flow-text'style={styleV}>Posted by: {item.created_by}</p>
+        <p className='flow-text'style={styleV}>{item.votes} votes</p>
+        <a className="btn-floating btn-large waves-effect waves-light red" style={styleB} onClick={this.genHandleClick(item._id,true)}><i class="material-icons">arrow_upward</i></a>
+        <a className="btn-floating btn-large waves-effect waves-light red" style={styleB} onClick={this.genHandleClick(item._id,false)}><i class="material-icons">arrow_downward</i></a>
       </div>;
     });
   }
@@ -120,6 +131,11 @@ class Article extends React.Component {
     }, {} );
     return a;
     
+  }
+
+  getBoolean(input){
+    if(this.state.comment.length > 0 ){return input}
+    else return input + ' disabled'
   }
 
   render () {
@@ -149,12 +165,12 @@ class Article extends React.Component {
     return (
       <div className='Nav'>
         <p style={styleTitle}>{this.getArticle(this.props.articles, this.props.match.params.id).title}</p>
+        <p className='flow-text' style={styleText}>Written By : {this.getArticle(this.props.articles, this.props.match.params.id).created_by}</p>
         <div className='left-align z-depth-2 '>
         <p className='flow-text' style={styleText}>{this.getArticle(this.props.articles, this.props.match.params.id).body}</p>
         </div>
-        <a class="btn-floating btn-large waves-effect waves-light red" onClick={this.handleUpClickArticle}><i class="material-icons">+</i></a> <a class="btn-floating btn-large waves-effect waves-light red" onClick={this.handleDownClickArticle}><i class="material-icons">-</i></a> <span className='flow-text' style={styleV}>{this.state.votes}</span> 
-        
-        <div className="row">
+        <a class="btn-floating btn-large waves-effect waves-light red" onClick={this.handleUpClickArticle}><i class="material-icons">exposure_plus_1</i></a> <a class="btn-floating btn-large waves-effect waves-light red" onClick={this.handleDownClickArticle}><i class="material-icons">exposure_neg_1</i></a> <span className='flow-text' style={styleV}>{this.state.votes}</span> 
+                <div className="row">
     <form className="col s12">
       <div className="row">
         <div class="input-field col s12">
@@ -164,8 +180,8 @@ class Article extends React.Component {
     </form>
   </div>
 
-
-       <button onClick={this.handlePostClick}>post comment</button>
+  <button className={this.getBoolean('btn waves-effect waves-light red')} onClick={this.handlePostClick} type="submit" name="action">Post Comment
+  </button>
         <p>{this.renderComments(this.props.comments)}</p>
         <p> *** </p>
       </div>

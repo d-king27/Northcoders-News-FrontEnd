@@ -39,7 +39,7 @@ class MostPop extends React.Component {
     }
     return (
       <div>
-        <h1 className = 'title left-align' style={style}>Most Popular</h1>
+        <h1 className = 'title left-align' style={style}>Most Popular</h1> 
         {this.renderArticles(this.props.articles)}
       </div>
     );
