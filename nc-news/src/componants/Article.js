@@ -123,12 +123,49 @@ class Article extends React.Component {
   }
 
   render () {
+    const styleTitle = {
+      paddingLeft: 0,
+      listStyle: 'none',
+      color:'red',
+      fontSize: '3em',
+      textAlign:'center',
+      fontWeight: 'bold',
+      fontFamily: "Courier"
+    }
+    const styleText = {
+      paddingLeft: 0,
+      listStyle: 'none',
+      color:'black',
+      fontFamily: "Courier"
+    }
+    const styleV = {
+      margin: '0.5em',
+      paddingLeft: 0,
+      listStyle: 'none',
+      color:'black',
+      fontSize: '30px',
+      fontFamily:'Courier'
+    }
     return (
       <div className='Nav'>
-        <p>{this.getArticle(this.props.articles, this.props.match.params.id).title}</p>
-        <p>{this.getArticle(this.props.articles, this.props.match.params.id).body}</p>
-        <p>{this.state.votes}</p> <button onClick={this.handleUpClickArticle}>rate up</button> <button onClick={this.handleDownClickArticle}>rate down</button>
-        <textarea rows="4" cols="50" onChange={this.handleChange}></textarea> <button onClick={this.handlePostClick}>post comment</button>
+        <p style={styleTitle}>{this.getArticle(this.props.articles, this.props.match.params.id).title}</p>
+        <div className='left-align z-depth-2 '>
+        <p className='flow-text' style={styleText}>{this.getArticle(this.props.articles, this.props.match.params.id).body}</p>
+        </div>
+        <a class="btn-floating btn-large waves-effect waves-light red" onClick={this.handleUpClickArticle}><i class="material-icons">+</i></a> <a class="btn-floating btn-large waves-effect waves-light red" onClick={this.handleDownClickArticle}><i class="material-icons">-</i></a> <span className='flow-text' style={styleV}>{this.state.votes}</span> 
+        
+        <div className="row">
+    <form className="col s12">
+      <div className="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" className="materialize-textarea" placeholder='Write Comment...' onChange={this.handleChange} ></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+       <button onClick={this.handlePostClick}>post comment</button>
         <p>{this.renderComments(this.props.comments)}</p>
         <p> *** </p>
       </div>

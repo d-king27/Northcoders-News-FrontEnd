@@ -33,9 +33,17 @@ return arr.map(function(item){
 
     }
     render () {
+      const style = {
+        paddingLeft: 0,
+        listStyle: 'none',
+        color:'black',
+        fontSize: '60px',
+        fontWeight: 'bold',
+        fontFamily: "Courier"
+      }
       return (
-        <div className =''>
-        <h1 className = 'title left-align'>{this.props.match.params.id[0].toUpperCase() + this.props.match.params.id.slice(1)}</h1>
+        <div>
+        <h1 style={style} className = 'title left-align'>{this.props.match.params.id[0].toUpperCase() + this.props.match.params.id.slice(1)}</h1>
        {this.renderArticles(this.props.articles)}
       </div>
       );

@@ -2,6 +2,7 @@ import React from 'react';
 import ArticleCard from './ArticleCard'
 import fetchArticles from '../actions/articles'
 import {connect} from 'react-redux';
+import _ from 'underscore'
 
 class MostPop extends React.Component {
   constructor(props){
@@ -16,7 +17,8 @@ class MostPop extends React.Component {
   }
 
   renderArticles(arr){
-    return arr.map(function(item){
+    const ordered = _.sortBy(arr,'votes')
+    return ordered.reverse().map(function(item){
       return <div className='section'>
       <ArticleCard title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
       </div>
@@ -27,9 +29,17 @@ class MostPop extends React.Component {
 
   }
   render () {
+    const style = {
+      paddingLeft: 0,
+      listStyle: 'none',
+      color:'black',
+      fontSize: '60px',
+      fontWeight: 'bold',
+      fontFamily: "Courier"
+    }
     return (
       <div>
-        <h1 className = 'title left-align'>Most Popular</h1>
+        <h1 className = 'title left-align' style={style}>Most Popular</h1>
         {this.renderArticles(this.props.articles)}
       </div>
     );
