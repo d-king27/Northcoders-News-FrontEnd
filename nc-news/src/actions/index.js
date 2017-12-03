@@ -8,7 +8,7 @@ export const toggleTest = () => ({
 
 
 
-const API_URL = 'https://northcoders-news-api.herokuapp.com/api';
+const API_URL = 'https://nc-news-api-dk.herokuapp.com/api';
 
 export const fetchArticlesRequest = () => ({
   type: types.FETCH_ARTICLES_REQUEST

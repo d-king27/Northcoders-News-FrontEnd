@@ -21,7 +21,7 @@ componentDidMount(){
   }
  fetchUser(){
    let that = this
-   axios.get(`http://northcoders-news-api.herokuapp.com/api/users/${this.props.match.params.username}`)
+   axios.get(`https://nc-news-api-dk.herokuapp.com/api/users/${this.props.match.params.username}`)
    .then((user)=>{
      that.setState({user:user})
    })

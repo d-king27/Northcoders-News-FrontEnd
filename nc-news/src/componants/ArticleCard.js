@@ -47,6 +47,5 @@ class ArticleCard extends React.Component {
     }
   }
 
-  // <p style={styleU} className='flow-text'>Author: {this.props.user}</p>
 
   export default ArticleCard

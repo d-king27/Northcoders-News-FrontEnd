@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import topicsRedcuer from '../reducers/topics';
 import * as actionCreators from '../actions/topics';
-console.log(actionCreators)
+
 function genPrevStat() {
     return  {
         loading: false,
