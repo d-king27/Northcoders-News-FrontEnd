@@ -29,13 +29,10 @@ describe('TEST reducer', () => {
   });
 });
 
-
-//create user page
-//do the css
 //write the reducer tests
 //write the react enzyme tests
 //add in the custom backend
+//write readmes
 //check over custom back end
 //check frontend
-//write readmes
 //fin
