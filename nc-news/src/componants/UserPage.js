@@ -23,7 +23,7 @@ componentDidMount(){
    let that = this
    axios.get(`https://nc-news-api-dk.herokuapp.com/api/users/${this.props.match.params.username}`)
    .then((user)=>{
-     that.setState({user:user})
+     that.setState({user:user.data})
    })
    .catch(console.log)
 
@@ -49,7 +49,7 @@ renderArticles(arr,user){
     })
     return filtered.map(function(item){
       return <div className='section'>
-      <ArticleCard title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
+      <ArticleCard key={item._id} title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
       </div>
 
     })
@@ -57,11 +57,12 @@ renderArticles(arr,user){
 }
 
 render(){
+
   const style = {
     paddingLeft: 0,
     listStyle: 'none',
     color:'black',
-    fontSize: '60px',
+    fontSize: '3em',
     fontWeight: 'bold',
     fontFamily: "Courier"
   }
@@ -69,8 +70,7 @@ render(){
 }
     return <div>
     <h3 style={style} className='flow-text'>{this.props.match.params.username}</h3>
-    <img className="responsive-img" style={imageStyleA} src={this.state.user.avatar_url} alt="user pic" align="center"/>
-    <p className='flow-text'>articles by {this.props.match.params.username}:</p>
+    <p className='flow-text' style={style}>Articles by {this.props.match.params.username}:</p>
     {this.renderArticles(this.props.articles,this.props.match.params.username)}
 </div>
 }

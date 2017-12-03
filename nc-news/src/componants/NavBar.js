@@ -29,7 +29,7 @@ class NavBar extends React.Component {
 renderTopics(topics){
   const style = {fontFamily:'Courier'}
   return topics.map(function(item){
-      return <Link style={style} className='col s3 flow-text black' to={`/topics/${item.slug}`} replace>{item.title}</Link>
+      return <Link key={item.slug}style={style} className='col s3 flow-text black' to={`/topics/${item.slug}`} replace>{item.title}</Link>
   }) 
 
 }

@@ -33,8 +33,8 @@ class MostPop extends React.Component {
     else{
       const ordered = _.sortBy(arr,'votes')
       return ordered.reverse().map(function(item){
-        return <div className='section'>
-        <ArticleCard title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
+        return <div key={item._id} className='section'>
+        <ArticleCard key={item._id}  title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
         </div>
       
       })
