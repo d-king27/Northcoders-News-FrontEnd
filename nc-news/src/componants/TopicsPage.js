@@ -12,6 +12,7 @@ class TopicPage extends React.Component {
     }
 
 componentDidMount(){
+  console.log('called')
     var p2 = this.props.match.params.id
      this.props.fetchArticles('topics',p2,'articles')
         

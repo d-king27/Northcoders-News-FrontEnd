@@ -35,7 +35,7 @@ export default (p1,p2,p3) => {
     dispatch(fetchArticlesRequest());
     return axios.get(`${API_URL}/${url}`)
       .then(res => {
-        dispatch(fetchArticlesSuccess(res.data.articles));
+        dispatch(fetchArticlesSuccess(res.data));
       })
       .catch(error => {
         dispatch(fetchArticlesFailure(error.message));

@@ -26,7 +26,7 @@ export default () => {
     dispatch(fetchTopicsRequest());
     return axios.get(`${API_URL}/topics`)
       .then(res => {
-        dispatch(fetchTopicsSuccess(res.data.topics));
+        dispatch(fetchTopicsSuccess(res.data));
       })
       .catch(error => {
         dispatch(fetchTopicsFailure(error.message));

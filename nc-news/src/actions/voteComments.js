@@ -23,15 +23,15 @@ export const putVoteCommentsFailure = (error) => ({
 export default (id, vote) => {
   var o = ""
   if (vote) {
-    o = "up";
+    o = "UP";
   }
   if(!vote) {
-    o = "down";
+    o = "DOWN";
   }
   return (dispatch) => {
        
     dispatch(putVoteCommentsRequest());
-    return axios.put(`${API_URL}/comments/${id}?vote=${o}`)
+    return axios.put(`${API_URL}/comments/${id}?votes=${o}`)
       .then(() => {
         dispatch(putVoteCommentsSuccess(id, vote));
       })

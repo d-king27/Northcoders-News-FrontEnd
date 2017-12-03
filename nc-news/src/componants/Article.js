@@ -41,7 +41,7 @@ class Article extends React.Component {
   handleUpClickArticle(event) {
     let that = this
     const value = this.state.votes;
-    axios.put(`https://nc-news-api-dk.herokuapp.com/api/articles/${this.props.match.params.id}?vote=up`)
+    axios.put(`https://nc-news-api-dk.herokuapp.com/api/articles/${this.props.match.params.id}?votes=UP`)
     .then((res)=>{
       that.setState({
         votes:value+1
@@ -56,7 +56,7 @@ class Article extends React.Component {
   handleDownClickArticle(event) {
     let that = this
     const value = this.state.votes;
-    axios.put(`https://nc-news-api-dk.herokuapp.com/api/articles/${this.props.match.params.id}?vote=down`)
+    axios.put(`https://nc-news-api-dk.herokuapp.com/api/articles/${this.props.match.params.id}?votes=DOWN`)
     .then((res)=>{
       that.setState({
         votes:value-1
@@ -80,7 +80,7 @@ class Article extends React.Component {
     if(this.state.comment.length === 0){return}
     let that = this
     event.preventDefault()
-    axios.get(`https://nc-news-api-dk.herokuapp.com/api/articles/${this.props.match.params.id}/comments`, {
+    axios.post(`https://nc-news-api-dk.herokuapp.com/api/articles/${this.props.match.params.id}/comments`, {
       "comment": that.state.comment
     })
     .then(function (response) {

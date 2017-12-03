@@ -26,7 +26,7 @@ export default (id) => {
     dispatch(fetchCommentsRequest());
     return axios.get(`${API_URL}/articles/${id}/comments`)
       .then(res => {
-        dispatch(fetchCommentsSuccess(res.data.comments));
+        dispatch(fetchCommentsSuccess(res.data));
       })
       .catch(error => {
         dispatch(fetchCommentsFailure(error.message));
