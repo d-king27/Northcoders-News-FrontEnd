@@ -17,13 +17,29 @@ class MostPop extends React.Component {
   }
 
   renderArticles(arr){
-    const ordered = _.sortBy(arr,'votes')
-    return ordered.reverse().map(function(item){
-      return <div className='section'>
-      <ArticleCard title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
+    if(this.props.loading === true){
+      return <div className="preloader-wrapper active">
+      <div className="spinner-layer spinner-red-only">
+        <div className="circle-clipper left">
+          <div className="circle"></div>
+        </div><div className="gap-patch">
+          <div className="circle"></div>
+        </div><div className="circle-clipper right">
+          <div className="circle"></div>
+        </div>
       </div>
-
-    })
+    </div>
+    }
+    else{
+      const ordered = _.sortBy(arr,'votes')
+      return ordered.reverse().map(function(item){
+        return <div className='section'>
+        <ArticleCard title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
+        </div>
+      
+      })
+    }
+  
 
 
 
@@ -46,7 +62,7 @@ class MostPop extends React.Component {
   }
     return (
       <div>
-        <img className="responsive-img" style={imageStyleA} src="https://northcoders.com/images/logos/learn_to_code_manchester_rw_second.png" alt="Northcoders" align="right"/>
+        <img className="responsive-img" style={imageStyleA} src="http://i68.tinypic.com/2ywaex5.png" alt="Northcoders" align="right"/>
         <h1 className = 'title left-align' style={style}> Most Popular</h1> 
         {this.renderArticles(this.props.articles)}
       </div>

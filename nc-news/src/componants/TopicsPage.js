@@ -23,6 +23,19 @@ componentDidMount(){
   }   
 
     renderArticles(arr){
+      if(this.props.loading === true){
+        return <div className="preloader-wrapper active">
+        <div className="spinner-layer spinner-red-only">
+          <div className="circle-clipper left">
+            <div className="circle"></div>
+          </div><div className="gap-patch">
+            <div className="circle"></div>
+          </div><div className="circle-clipper right">
+            <div className="circle"></div>
+          </div>
+        </div>
+      </div>
+      }
 return arr.map(function(item){
     return <div className='section'>
     <ArticleCard title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
@@ -41,8 +54,16 @@ return arr.map(function(item){
         fontWeight: 'bold',
         fontFamily: "Courier"
       }
+      const imageStyleA ={
+        float: 'right',
+        width: '300px',
+        border: '3px solid',
+        padding: '10px',
+        backgroundColor: 'black'
+    }
       return (
         <div>
+           <img className="responsive-img" style={imageStyleA} src="http://i68.tinypic.com/2ywaex5.png" alt="Northcoders" align="right"/>
         <h1 style={style} className = 'title left-align'>{this.props.match.params.id[0].toUpperCase() + this.props.match.params.id.slice(1)}</h1>
        {this.renderArticles(this.props.articles)}
       </div>
