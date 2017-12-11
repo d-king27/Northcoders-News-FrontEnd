@@ -66,8 +66,6 @@ render(){
     fontWeight: 'bold',
     fontFamily: "Courier"
   }
-  const imageStyleA ={
-}
     return <div>
     <h3 style={style} className='flow-text'>{this.props.match.params.username}</h3>
     <p className='flow-text' style={style}>Articles by {this.props.match.params.username}:</p>

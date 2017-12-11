@@ -1,5 +1,7 @@
 # Northcoders-News-FrontEnd
+
 ### Overview
+
 Northcoders News is designed to be a news commentary site and a cross between reddit www.reddit.com and medium https://medium.com/ with users being able to comment on short informative articles covering a variaty of topics. This is the front end interface of the project and is coupled with the API which can be found here https://github.com/d-king27/Northcoders-News-API
 
 ### Prerequisites
@@ -21,7 +23,6 @@ clone the repo to your local machine
 git clone https://github.com/d-king27/Northcoders-News-FrontEnd.git
 ```
 run npm install
-move into the nc-news directory
 run npm start 
 
 ```

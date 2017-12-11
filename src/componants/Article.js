@@ -21,13 +21,15 @@ class Article extends React.Component {
     this.getBoolean = this.getBoolean.bind(this)
     this.state = {
       comment:'',
-      votes: this.getArticle(this.props.articles, this.props.match.params.id).votes
+      article:null,
+      votes: 0
     }
 
   } 
 
   componentDidMount() {
     this.props.fetchComments(this.props.match.params.id);
+    this.getArticle()
   }
 
   genHandleClick(id,bool){
@@ -85,6 +87,7 @@ class Article extends React.Component {
     })
     .then(function (response) {
       that.props.fetchComments(that.props.match.params.id);
+      that.setState({comment:''})
     })
     .catch(function (error) {
       console.log(error);
@@ -138,16 +141,22 @@ class Article extends React.Component {
     });
   }
 
-  getArticle(arr, id) {
-    var a = arr.reduce(function(acc, item) {
-      if(item['_id'] === id) {
-        Object.assign(acc, item);
-      }
-      return acc;
-    }, {} );
-    return a;
-    
+ 
+  getArticle() {
+    let that = this
+ return axios.get(`https://nc-news-api-dk.herokuapp.com/api/articles/${this.props.match.params.id}`)
+ .then((article)=>{
+  that.setState({
+    article:article.data,
+    votes:article.data.votes
+  })
+})
+  .catch(function (error) {
+    console.log(error);
+  });
+  
   }
+  
 
   getBoolean(input){
     if(this.state.comment.length > 0 ){return input}
@@ -178,19 +187,36 @@ class Article extends React.Component {
       fontSize: '30px',
       fontFamily:'Courier'
     }
-    return (
-      <div className='Nav'>
-        <p style={styleTitle}>{this.getArticle(this.props.articles, this.props.match.params.id).title}</p>
-        <Link style={styleText} className='flow-text'to={`/user/${this.getArticle(this.props.articles, this.props.match.params.id).created_by}`}>Author: {this.getArticle(this.props.articles, this.props.match.params.id).created_by}</Link>
-        <div className='left-align z-depth-2 '>
-        <p className='flow-text' style={styleText}>{this.getArticle(this.props.articles, this.props.match.params.id).body}</p>
+
+    if(this.state.article===null){
+      return <div className="preloader-wrapper active">
+      <div className="spinner-layer spinner-red-only">
+        <div className="circle-clipper left">
+          <div className="circle"></div>
+        </div><div className="gap-patch">
+          <div className="circle"></div>
+        </div><div className="circle-clipper right">
+          <div className="circle"></div>
         </div>
-        <a class="btn-floating btn-large waves-effect waves-light red" onClick={this.handleUpClickArticle}><i class="material-icons">exposure_plus_1</i></a> <a class="btn-floating btn-large waves-effect waves-light red" onClick={this.handleDownClickArticle}><i class="material-icons">exposure_neg_1</i></a> <span className='flow-text' style={styleV}>{this.state.votes}</span> 
+      </div>
+    </div>
+    }
+
+
+
+   else return (
+      <div className='Nav'>
+        <p style={styleTitle}>{this.state.article.title}</p>
+        <Link style={styleText} className='flow-text'to={`/user/${this.state.article.created_by}`}>Author: {this.state.article.created_by}</Link>
+        <div className='left-align z-depth-2 '>
+        <p className='flow-text' style={styleText}>{this.state.article.body}</p>
+        </div>
+        <a className="btn-floating btn-large waves-effect waves-light red" onClick={this.handleUpClickArticle}><i class="material-icons">exposure_plus_1</i></a> <a class="btn-floating btn-large waves-effect waves-light red" onClick={this.handleDownClickArticle}><i class="material-icons">exposure_neg_1</i></a> <span className='flow-text' style={styleV}>{this.state.votes}</span> 
                 <div className="row">
     <form className="col s12">
       <div className="row">
-        <div class="input-field col s12">
-          <textarea id="textarea1" className="materialize-textarea" placeholder='Write Comment...' onChange={this.handleChange} ></textarea>
+        <div className="input-field col s12">
+          <textarea id="textarea1" className="materialize-textarea"  value={this.state.comment} placeholder='Write Comment...' onChange={this.handleChange} ></textarea>
         </div>
       </div>
     </form>
