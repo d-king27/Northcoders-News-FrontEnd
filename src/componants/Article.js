@@ -19,6 +19,7 @@ class Article extends React.Component {
     this.handleUpClickArticle = this.handleUpClickArticle.bind(this);
     this.handleDownClickArticle = this.handleDownClickArticle.bind(this);
     this.getBoolean = this.getBoolean.bind(this)
+    this.genDeleteComment = this.genDeleteComment.bind(this)
     this.state = {
       comment:'',
       article:null,
@@ -41,30 +42,23 @@ class Article extends React.Component {
 
 
   handleUpClickArticle(event) {
-    let that = this
     const value = this.state.votes;
-    axios.put(`https://nc-news-api-dk.herokuapp.com/api/articles/${this.props.match.params.id}?votes=UP`)
-    .then((res)=>{
-      that.setState({
-        votes:value+1
-      })
-
+    this.setState({
+      votes:value+1
     })
+    return axios.put(`https://nc-news-api-dk.herokuapp.com/api/articles/${this.props.match.params.id}?votes=UP`)
     .catch((err)=>{
       console.log(err)
     })
   }
 
   handleDownClickArticle(event) {
-    let that = this
     const value = this.state.votes;
-    axios.put(`https://nc-news-api-dk.herokuapp.com/api/articles/${this.props.match.params.id}?votes=DOWN`)
-    .then((res)=>{
-      that.setState({
-        votes:value-1
-      })
-
+    this.setState({
+      votes:value-1
     })
+
+    return axios.put(`https://nc-news-api-dk.herokuapp.com/api/articles/${this.props.match.params.id}?votes=DOWN`)
     .catch((err)=>{
       console.log(err)
     })
@@ -94,6 +88,24 @@ class Article extends React.Component {
     });
 
   }
+
+  genDeleteComment(id){
+   return (event)=>{
+    let that = this
+    event.preventDefault()
+    return axios.delete(`https://nc-news-api-dk.herokuapp.com/api/comments/${id}`)
+    .then(()=>{
+      that.props.fetchComments(this.props.match.params.id);
+    })
+    .catch((err)=>{
+      console.log(err)
+    }) 
+
+   } 
+  
+  }
+
+
 
 
   renderComments(arr) {
@@ -137,6 +149,7 @@ class Article extends React.Component {
         <p className='flow-text'style={styleV}>{item.votes} votes</p>
         <a className="btn-floating btn-large waves-effect waves-light red" style={styleB} onClick={this.genHandleClick(item._id,true)}><i class="material-icons">arrow_upward</i></a>
         <a className="btn-floating btn-large waves-effect waves-light red" style={styleB} onClick={this.genHandleClick(item._id,false)}><i class="material-icons">arrow_downward</i></a>
+        <a className="btn-floating btn-large waves-effect waves-light red" style={styleB} onClick={this.genDeleteComment(item._id)} >DEL</a>
       </div>;
     });
   }

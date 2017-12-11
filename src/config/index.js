@@ -1,0 +1,1 @@
+module.exports ={API_URL:'https://nc-news-api-dk.herokuapp.com/api'}

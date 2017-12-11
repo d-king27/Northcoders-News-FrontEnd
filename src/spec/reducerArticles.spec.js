@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import articleRedcuer from '../reducers/articles';
-import * as actionCreators from '../actions';
+import * as actionCreators from '../actions/articles';
 
 function genPrevStat() {
     return {
