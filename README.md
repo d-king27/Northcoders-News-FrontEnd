@@ -6,9 +6,7 @@ Northcoders News is designed to be a news commentary site and a cross between re
 
 ### Prerequisites
 
-This project requires Node.js and npm to run
-
-installation instructions can be found here
+This project requires Node.js and npm to run (minmum version v8.3.0),installation instructions can be found here:
 
 ```
 https://nodejs.org/en/download/package-manager/
@@ -27,7 +25,6 @@ run npm start
 
 ```
 npm install
-cd nc-news
 npm start
 ```
 
