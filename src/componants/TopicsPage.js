@@ -38,7 +38,7 @@ componentDidMount(){
       }
 return arr.map(function(item){
     return <div className='section'>
-    <ArticleCard key={item._id} title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
+    <ArticleCard key={item.title} title ={item.title} body ={item.body} articleId = {item._id} articleVotes = {item.votes} user ={item.created_by}/>
     </div>
 })
 
