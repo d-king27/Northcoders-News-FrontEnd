@@ -1,3 +1,5 @@
+/* eslint-env node, mocha */
+/* eslint-disable  no-console */
 import {expect} from 'chai';
 import nock from 'nock';
 import configureMockStore from 'redux-mock-store';

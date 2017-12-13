@@ -4,6 +4,7 @@
 
 Northcoders News is designed to be a news commentary site and a cross between reddit www.reddit.com and medium https://medium.com/ with users being able to comment on short informative articles covering a variaty of topics. This is the front end interface of the project and is coupled with the API which can be found here https://github.com/d-king27/Northcoders-News-API
 
+
 ### Prerequisites
 
 link to hosted site https://nc-news-app.herokuapp.com/
@@ -49,3 +50,5 @@ The site consists of:
 ## Acknowledgments
 
 Northcoders Organisation and all affiliated tutors
+
+This Project was created using create-react-app https://github.com/facebookincubator/create-react-app

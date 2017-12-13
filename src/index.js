@@ -1,3 +1,5 @@
+/* eslint-disable  no-unused-vars */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
@@ -7,8 +9,8 @@ import App from './componants/App.js';
 import store from './store';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>, 
-  document.getElementById('root')
+    <Provider store={store}>
+        <App />
+    </Provider>, 
+    document.getElementById('root')
 );

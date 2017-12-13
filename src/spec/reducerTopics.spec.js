@@ -1,3 +1,5 @@
+/* eslint-env node, mocha */
+/* eslint-disable  no-console */
 import { expect } from 'chai';
 import topicsRedcuer from '../reducers/topics';
 import * as actionCreators from '../actions/topics';
@@ -7,7 +9,7 @@ function genPrevStat() {
         loading: false,
         error: null,
         data: []
-      };
+    };
 }
 describe('ARTICLE reducer', () => {
     describe('default behaviour', () => {
@@ -21,19 +23,22 @@ describe('ARTICLE reducer', () => {
             const prevState = genPrevStat();
             const action = { type: 'whatever' };
             const newState = topicsRedcuer(undefined, action);
+            expect(newState===prevState).to.equal(false);
             expect(newState).to.eql(prevState);
         });
     });
     describe('handles FETCH_TOPICS_REQUEST action', () => {
         it('', () => {
+            const prevState = genPrevStat();
             let newState;
             const action = actionCreators.fetchTopicsRequest();
             newState = topicsRedcuer(undefined, action);
+            expect(newState===prevState).to.equal(false);
             expect(newState).to.eql({
                 loading: true,
                 error: null,
                 data: []
-              });
+            });
 
         });
     });
