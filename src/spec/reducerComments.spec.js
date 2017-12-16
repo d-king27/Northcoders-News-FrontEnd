@@ -11,7 +11,7 @@ function genPrevStat() {
         data: []
     };
 }
-describe('ARTICLE reducer', () => {
+describe('COMMENT reducer', () => {
     describe('default behaviour', () => {
         it('returns the passed previous state if an unrecognised action is passed', () => {
             const prevState = genPrevStat();
