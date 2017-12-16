@@ -34,6 +34,18 @@ npm start
 
 The Website will now be running on localhost:3000 on whatever default broswer you have on your machine
 
+### Testing
+this project comes with a fullset of tests for the redux actions and reducers which can be run by using the command:
+```
+npm test
+```
+example test:
+```
+ ARTICLE reducer
+    default behaviour
+      ✓ returns the passed previous state if an unrecognised action is passed
+      ✓ uses the initial state if no previous state is passed
+```
 
 ## Site features
 The site consists of:
